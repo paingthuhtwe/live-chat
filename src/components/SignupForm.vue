@@ -9,7 +9,7 @@
       <input
         type="text"
         id="name"
-        class="bg-slate-200 block w-full px-3 py-2 rounded-md mb-4"
+        class="bg-white md:bg-slate-200 block w-full px-3 py-2 rounded-md mb-4"
         required
         v-model="name"
       />
@@ -17,7 +17,7 @@
       <input
         type="email"
         id="email"
-        class="bg-slate-200 block w-full px-3 py-2 rounded-md mb-4"
+        class="bg-white md:bg-slate-200 block w-full px-3 py-2 rounded-md mb-4"
         required
         v-model="email"
       />
@@ -25,7 +25,7 @@
       <input
         type="password"
         id="password"
-        class="bg-slate-200 block w-full px-3 py-2 rounded-md mb-9"
+        class="bg-white md:bg-slate-200 block w-full px-3 py-2 rounded-md mb-9"
         required
         v-model="password"
       />

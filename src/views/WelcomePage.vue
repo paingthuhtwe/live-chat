@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full md:w-[720px] lg:w-[1080px] mx-auto bg-white mt-12 rounded-lg shadow-sm p-3"
+    class="w-full md:w-[720px] lg:w-[1080px] mx-auto md:bg-white md:mt-12 rounded-lg md:shadow-sm p-3"
   >
     <div v-if="show">
       <LoginForm
