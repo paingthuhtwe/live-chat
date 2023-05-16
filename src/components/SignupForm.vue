@@ -1,6 +1,9 @@
 <template>
   <div class="my-12 w-[360px] mx-auto">
     <h2 class="text-center text-3xl font-semibold mb-4">Sign Up</h2>
+    <div v-if="error" class="text-center text-red-500 text-sm">
+      {{ error }}
+    </div>
     <form @submit.prevent="signUp">
       <label for="name" class="font-medium">Name</label>
       <input
@@ -47,16 +50,30 @@
 
 <script>
 import { ref } from "vue";
+import { auth } from "../firebase/config";
 export default {
   setup() {
     let name = ref("");
     let email = ref("");
     let password = ref("");
-    let signUp = () => {
-      console.log(name.value, email.value, password.value);
+    let error = ref("");
+
+    let signUp = async () => {
+      try {
+        let res = await auth.createUserWithEmailAndPassword(
+          email.value,
+          password.value
+        );
+
+        if (!res) {
+          throw new Error("Could not create new user!");
+        }
+      } catch (err) {
+        error.value = err.message;
+      }
     };
 
-    return { name, email, password, signUp };
+    return { name, email, password, signUp, error };
   },
 };
 </script>
