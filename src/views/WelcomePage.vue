@@ -3,10 +3,16 @@
     class="w-full md:w-[720px] lg:w-[1080px] mx-auto bg-white mt-12 rounded-lg shadow-sm p-3"
   >
     <div v-if="show">
-      <LoginForm @show="show = !show"></LoginForm>
+      <LoginForm
+        @show="show = !show"
+        @enterChatroom="enterChatroom"
+      ></LoginForm>
     </div>
     <div v-else>
-      <SignupForm @show="show = !show"></SignupForm>
+      <SignupForm
+        @show="show = !show"
+        @enterChatroom="enterChatroom"
+      ></SignupForm>
     </div>
   </div>
 </template>
@@ -15,6 +21,7 @@
 import SignupForm from "../components/SignupForm";
 import LoginForm from "../components/LoginForm";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 export default {
   components: {
     SignupForm,
@@ -22,8 +29,13 @@ export default {
   },
   setup() {
     let show = ref(true);
+    let router = useRouter();
 
-    return { show };
+    let enterChatroom = () => {
+      router.push({ name: "ChatRoom" });
+    };
+
+    return { show, enterChatroom };
   },
 };
 </script>
