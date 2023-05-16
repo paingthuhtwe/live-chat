@@ -1,7 +1,7 @@
 <template>
   <nav>
     <div
-      class="flex justify-between border-b border-slate-300 pb-3"
+      class="flex justify-between border-b border-slate-500 pb-3"
       v-if="user"
     >
       <div>

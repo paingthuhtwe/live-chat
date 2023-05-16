@@ -1,5 +1,5 @@
 <template>
-  <div class="w-[100%] h-[65vh] overflow-y-auto scrollbar-hide">
+  <div class="w-[100%] h-[80vh] md:h-[65vh] overflow-y-auto scrollbar-hide">
     <div class="mt-4 flex">
       <div class="w-9 h-9 rounded-lg bg-violet-400 mr-2"></div>
       <div class="w-72 md:w-96 lg:w-[540px]">
