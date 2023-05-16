@@ -68,6 +68,9 @@ export default {
         if (!res) {
           throw new Error("Could not create new user!");
         }
+
+        // add name while sign up
+        res.user.updateProfile({ displayName: name.value });
       } catch (err) {
         error.value = err.message;
       }
