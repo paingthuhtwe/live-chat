@@ -1,6 +1,9 @@
 <template>
   <div class="my-12 w-[360px] mx-auto">
     <h2 class="text-center text-3xl font-semibold mb-4">Sing In</h2>
+    <div v-if="error" class="text-center text-red-500 text-sm">
+      {{ error }}
+    </div>
     <form @submit.prevent="signIn">
       <label for="email" class="font-medium">Email</label>
       <input
@@ -38,16 +41,20 @@
 
 <script>
 import { ref } from "vue";
+import useSignIn from "../composables/useSignIn";
 export default {
   setup() {
     let email = ref("");
     let password = ref("");
 
-    let signIn = () => {
-      console.log(email.value, password.value);
+    let { error, login } = useSignIn();
+
+    let signIn = async () => {
+      let res = await login(email.value, password.value);
+      console.log(res);
     };
 
-    return { email, password, signIn };
+    return { email, password, signIn, error };
   },
 };
 </script>

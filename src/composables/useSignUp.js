@@ -1,29 +1,23 @@
 import { ref } from "vue";
 import { auth } from "../firebase/config";
 
-let useSingUp = () => {
-    let error = ref("");
+let useSignUp = () => {
+    let error = ref('');
 
-    let createAccount = async( name, email, password ) => {
+    let createAccount = async (name, email, password) => {
         try {
-            let res = await auth.createUserWithEmailAndPassword(
-              email,
-              password
-            );
-    
+            let res = await auth.createUserWithEmailAndPassword(email, password);
             if (!res) {
-              throw new Error("Could not create new user!");
+                throw new Error("Could not create new account!");
             }
-    
-            // add name while sign up
             res.user.updateProfile({ displayName: name });
             return res;
-          } catch (err) {
+        } catch (err) {
             error.value = err.message;
-          }
-    };
+        }
+    }
 
     return { error, createAccount };
 }
 
-export default useSingUp;
+export default useSignUp;
