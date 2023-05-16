@@ -21,7 +21,7 @@ export default {
     LoginForm,
   },
   setup() {
-    let show = ref(false);
+    let show = ref(true);
 
     return { show };
   },
