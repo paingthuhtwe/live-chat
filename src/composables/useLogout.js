@@ -8,7 +8,7 @@ let useLogout = () => {
     let logout = async () => {
         try {
             await auth.signOut();
-            router.push({name: 'WelcomePage'});
+            // router.push({name: 'WelcomePage'});
         } catch (err) {
             error.value = err.message;
         }
