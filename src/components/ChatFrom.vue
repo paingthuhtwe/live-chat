@@ -34,7 +34,7 @@ export default {
         userId: user.value.uid,
         created_at: timestamp(),
       };
-      await addDoc(chat);
+      message.value && (await addDoc(chat));
       message.value = "";
     };
 
