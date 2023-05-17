@@ -9,6 +9,7 @@
   "dependencies": {
     "autoprefixer": "^10",
     "core-js": "^3.8.3",
+    "date-fns": "^2.30.0",
     "firebase": "^9.22.0",
     "moment": "^2.29.4",
     "postcss": "^8",
