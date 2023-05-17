@@ -32,6 +32,7 @@ export default {
         message: message.value,
         userName: user.value.displayName,
         userId: user.value.uid,
+        fav: false,
         created_at: timestamp(),
       };
       message.value && (await addDoc(chat));
