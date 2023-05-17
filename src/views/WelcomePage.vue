@@ -22,7 +22,6 @@ import SignupForm from "../components/SignupForm";
 import LoginForm from "../components/LoginForm";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { auth } from "../firebase/config";
 export default {
   components: {
     SignupForm,
@@ -31,10 +30,6 @@ export default {
   setup() {
     let show = ref(true);
     let router = useRouter();
-
-    if (auth.currentUser) {
-      router.push({ name: "ChatRoom" });
-    }
 
     let enterChatroom = () => {
       router.push({ name: "ChatRoom" });
