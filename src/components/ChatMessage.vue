@@ -5,7 +5,7 @@
       <span class="float-right">
         <div>
           <span
-            @dblclick="addFav(message)"
+            @dblclick="Fav(message)"
             class="block px-3 py-[5.5px] bg-indigo-500 text-white font-medium rounded-md float-right relative"
             >{{ message.message }}
             <span
@@ -45,7 +45,7 @@
     </div>
     <div class="w-72 md:w-96 lg:w-[540px]">
       <p
-        @dblclick="addFav(message)"
+        @dblclick="Fav(message)"
         class="inline-block px-3 py-[5.5px] bg-indigo-500 text-white font-medium rounded-md relative"
       >
         {{ message.message }}
@@ -74,21 +74,15 @@
 
 <script>
 import getDate from "../composables/getDate";
-import { db } from "../firebase/config";
+import addFav from "../composables/addFav";
 export default {
   props: ["message", "user"],
   setup() {
     let { formatDate } = getDate();
 
-    let addFav = (message) => {
-      message.fav &&
-        db.collection("messages").doc(message.id).update({ fav: false });
+    let { Fav } = addFav();
 
-      !message.fav &&
-        db.collection("messages").doc(message.id).update({ fav: true });
-    };
-
-    return { formatDate, addFav };
+    return { formatDate, Fav };
   },
 };
 </script>
