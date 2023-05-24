@@ -40,11 +40,13 @@
         </div>
       </span>
     </div>
-    <div
-      class="w-9 h-9 rounded-lg bg-red-300 flex justify-center items-center font-bold text-lg text-slate-600 cursor-pointer"
+    <router-link
+      to="/profile"
+      class="w-9 h-9 rounded-lg bg-red-300 overflow-hidden flex justify-center items-center font-bold text-lg text-slate-600 cursor-pointer"
     >
-      {{ message.userName.charAt(0) }}
-    </div>
+      <img :src="img_url" v-if="img_url" alt="" />
+      <span v-else> {{ message.userName.charAt(0) }}</span>
+    </router-link>
   </div>
   <!-- message for receivers start  -->
   <div class="mt-4 flex" v-else>
@@ -94,14 +96,37 @@
 <script>
 import getDate from "../composables/getDate";
 import addFav from "../composables/addFav";
+import { ref as storageReference, getDownloadURL } from "firebase/storage";
+import { storage } from "@/firebase/config";
+import { onMounted, ref } from "vue";
+
 export default {
   props: ["message", "user"],
-  setup() {
+  setup(props) {
     let { formatDate } = getDate();
 
     let { Fav } = addFav();
 
-    return { formatDate, Fav };
+    let img_url = ref(null);
+
+    onMounted(() => {
+      if (props.user.photoURL) {
+        const storageRef = storageReference(
+          storage,
+          `profile/${props.user.photoURL}`
+        );
+        try {
+          getDownloadURL(storageRef).then((url) => {
+            img_url.value = url;
+            return url;
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    });
+
+    return { formatDate, Fav, img_url };
   },
 };
 </script>
