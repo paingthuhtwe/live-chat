@@ -9,10 +9,12 @@
           to="/profile"
           class="w-12 h-12 overflow-hidden rounded-full border-white border-4 mr-2 shadow cursor-pointer hover:shadow-indigo-400"
         >
+          <img class="w-full h-auto" :src="img_url" alt="" v-if="img_url" />
           <img
             class="w-full h-auto"
-            src="https://c8.alamy.com/comp/WP9AJE/side-profile-of-a-young-man-WP9AJE.jpg"
+            src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
             alt=""
+            v-else
           />
         </router-link>
         <div>
@@ -39,6 +41,9 @@
 <script>
 import useLogout from "../composables/useLogout";
 import getUser from "../composables/getUser";
+import { onMounted, ref } from "vue";
+import { ref as storageReference, getDownloadURL } from "firebase/storage";
+import { storage } from "@/firebase/config";
 
 export default {
   setup() {
@@ -46,7 +51,26 @@ export default {
 
     let { user } = getUser();
 
-    return { logout, user };
+    let img_url = ref(null);
+
+    onMounted(() => {
+      if (user.value.photoURL) {
+        const storageRef = storageReference(
+          storage,
+          `profile/${user.value.photoURL}`
+        );
+        try {
+          getDownloadURL(storageRef).then((url) => {
+            img_url.value = url;
+            return url;
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    });
+
+    return { logout, user, img_url };
   },
 };
 </script>
