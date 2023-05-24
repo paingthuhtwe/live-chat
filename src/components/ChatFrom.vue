@@ -2,13 +2,28 @@
   <div class="mt-6 flex">
     <div class="mr-2 w-full">
       <form>
-        <input
-          type="text"
-          class="bg-indigo-100 w-full rounded-md px-3 py-2 text-slate-900"
-          placeholder="Hit enter to send"
-          v-model="message"
-          @keydown.enter.prevent="send"
-        />
+        <label
+          for="search"
+          class="mb-2 text-sm font-medium text-gray-900 sr-only"
+          >Search</label
+        >
+        <div class="relative">
+          <input
+            type="search"
+            id="search"
+            class="block w-full p-3 text-sm text-slate-900 rounded-md bg-indigo-100 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Hit enter to send message"
+            v-model="message"
+            @keydown.enter.prevent="send"
+            required
+          />
+          <button
+            @click.prevent="send"
+            class="text-white absolute right-1 bottom-1 bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 py-2"
+          >
+            Send
+          </button>
+        </div>
       </form>
     </div>
   </div>
