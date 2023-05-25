@@ -124,7 +124,7 @@ export default {
 
       const storageRef = storageReference(
         storage,
-        `folder/${image.value.files[0].name}`
+        `profile/${image.value.files[0].name}`
       );
       uploadBytes(storageRef, image.value.files[0])
         .then(() => {
@@ -148,7 +148,7 @@ export default {
       if (user.value.photoURL) {
         const storageRef = storageReference(
           storage,
-          `folder/${user.value.photoURL}`
+          `profile/${user.value.photoURL}`
         );
         getDownloadURL(storageRef).then((url) => (img_url.value = url));
       }

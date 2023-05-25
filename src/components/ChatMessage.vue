@@ -109,19 +109,17 @@ export default {
 
     let img_url = ref(null);
 
-    onMounted(() => {
+    onMounted(async () => {
       if (props.user.photoURL) {
         const storageRef = storageReference(
           storage,
           `profile/${props.user.photoURL}`
         );
         try {
-          getDownloadURL(storageRef).then((url) => {
-            img_url.value = url;
-            return url;
-          });
+          let imgURL = await getDownloadURL(storageRef);
+          img_url.value = imgURL;
         } catch (err) {
-          console.log(err);
+          console.log("User profile not found in server!");
         }
       }
     });
