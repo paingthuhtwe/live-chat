@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full md:w-[720px] lg:w-[1080px] mx-auto bg-white md:mt-12 md:rounded-lg shadow-sm p-6"
+    class="w-full md:w-[720px] lg:w-[1080px] mx-auto bg-white md:mt-12 md:rounded-lg shadow-sm p-1 md:p-6"
   >
     <NavBar></NavBar>
     <ChatWindow></ChatWindow>

@@ -20,7 +20,7 @@
         @click="profile = true"
         class="w-40 h-40 overflow-hidden rounded-full border-white border-4 absolute -top-20 left-6 cursor-pointer"
         :class="{
-          ' rounded-md w-96 h-96 top-10 left-1 md:left-[32%] z-10': profile,
+          ' rounded-md w-80 h-80 md:top-10 md:left-[32%] z-10': profile,
         }"
       >
         <img class="w-full h-auto" :src="img_url" alt="" v-if="img_url" />

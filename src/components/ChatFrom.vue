@@ -1,16 +1,10 @@
 <template>
-  <div class="mt-6 flex">
-    <div class="mr-2 w-full">
+  <div class="my-3 flex">
+    <div class="w-full">
       <form>
-        <label
-          for="search"
-          class="mb-2 text-sm font-medium text-gray-900 sr-only"
-          >Search</label
-        >
         <div class="relative">
           <input
-            type="search"
-            id="search"
+            type="textt"
             class="block w-full p-3 text-sm text-slate-900 rounded-md bg-indigo-100 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Hit enter to send message"
             v-model="message"

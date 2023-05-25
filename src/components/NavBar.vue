@@ -22,14 +22,14 @@
             user.displayName
           }}</router-link>
           <p class="text-slate-500 font-semibold text-sm">
-            Login as ( {{ user.email }} )
+            <span class="hidden"> Login as </span>{{ user.email }}
           </p>
         </div>
       </div>
-      <div>
+      <div class="flex items-center">
         <button
           @click="logout"
-          class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md font-semibold"
+          class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md font-semibold text-sm md:text-lg"
         >
           Logout
         </button>
