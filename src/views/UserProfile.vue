@@ -136,7 +136,6 @@ export default {
             .then((url) => {
               img_url.value = url;
               db.collection("users").map((user) => user.userId === user);
-              // openai please fill codes below
               // please write update code in here for img_url update in db.collection('users)
               // mark:: users.uid not equal to auth.uid, users.userId equal to auth.uid
             })
@@ -151,11 +150,17 @@ export default {
 
     onMounted(() => {
       if (user.value.photoURL) {
-        const storageRef = storageReference(
-          storage,
-          `profile/${user.value.photoURL}`
-        );
-        getDownloadURL(storageRef).then((url) => (img_url.value = url));
+        let url = user.value.photoURL.includes("http");
+        console.log(url);
+        if (url) {
+          img_url.value = user.value.photoURL;
+        } else {
+          const storageRef = storageReference(
+            storage,
+            `profile/${user.value.photoURL}`
+          );
+          getDownloadURL(storageRef).then((url) => (img_url.value = url));
+        }
       }
     });
 

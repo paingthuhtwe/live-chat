@@ -81,8 +81,8 @@ export default {
       signInWithPopup(auth, provider).then((result) => {
         if (result) {
           router.push("/chatroom");
-          let urlResult = result.user.photoURL.includes("http");
-          urlResult ? (result.user.photoURL = "") : false;
+          // let urlResult = result.user.photoURL.includes("http");
+          // urlResult ? (result.user.photoURL = "") : false;
         }
       });
     };

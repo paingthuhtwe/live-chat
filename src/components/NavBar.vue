@@ -55,17 +55,22 @@ export default {
 
     onMounted(() => {
       if (user.value.photoURL) {
-        const storageRef = storageReference(
-          storage,
-          `profile/${user.value.photoURL}`
-        );
-        try {
-          getDownloadURL(storageRef).then((url) => {
-            img_url.value = url;
-            return url;
-          });
-        } catch (err) {
-          console.log(err);
+        let url = user.value.photoURL.includes("http");
+        if (url) {
+          img_url.value = user.value.photoURL;
+        } else {
+          const storageRef = storageReference(
+            storage,
+            `profile/${user.value.photoURL}`
+          );
+          try {
+            getDownloadURL(storageRef).then((url) => {
+              img_url.value = url;
+              return url;
+            });
+          } catch (err) {
+            console.log(err);
+          }
         }
       }
     });
