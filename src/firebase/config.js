@@ -2,6 +2,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import "firebase/compat/auth";
 import { getStorage } from "firebase/storage";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -20,5 +21,6 @@ let db = firebase.firestore();
 let timestamp = firebase.firestore.FieldValue.serverTimestamp;
 let auth = firebase.auth();
 let storage = getStorage(app);
+let provider = new GoogleAuthProvider();
 
-export { db, timestamp, auth, storage };
+export { db, timestamp, auth, storage, provider, getAuth, signInWithPopup };
