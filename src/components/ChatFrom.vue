@@ -1,5 +1,5 @@
 <template>
-  <div class="my-3 flex">
+  <div class="my-3">
     <div class="w-full">
       <form>
         <div class="relative">

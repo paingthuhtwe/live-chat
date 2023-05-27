@@ -1,5 +1,5 @@
 <template>
-  <div class="my-12 w-[360px] mx-auto">
+  <div class="my-12 w-[320px] md:w-[360px] mx-auto">
     <h2 class="text-center text-3xl font-semibold mb-4">Sing In</h2>
     <div v-if="error" class="text-center text-red-500 text-sm">
       {{ error }}

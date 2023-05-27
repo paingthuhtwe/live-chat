@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="message"
-    class="block px-6 py-3 text-white text-ld font-semibold rounded-md text-center absolute top-5 right-5"
+    class="block px-6 py-3 text-white text-lg font-semibold rounded-md text-center absolute top-5 right-5"
     :class="{
       'bg-red-500': danger,
       'bg-green-500': !danger,
@@ -12,15 +12,16 @@
 
   <div
     v-if="user"
-    class="w-full md:w-[720px] lg:w-[1080px] mx-auto bg-white md:mt-12 md:rounded-lg shadow-sm"
+    class="w-full h-[100vh] md:w-[720px] lg:w-[1080px] mx-auto bg-white md:mt-12 md:rounded-lg shadow-sm"
   >
     <div class="w-full h-48 bg-indigo-300 md:rounded-t-lg"></div>
-    <div class="p-6 relative">
+    <div class="p-3 relative">
       <div
-        @click="profile = true"
-        class="w-40 h-40 overflow-hidden rounded-full border-white border-4 absolute -top-20 left-6 cursor-pointer"
+        @click="profile = !profile"
+        class="w-40 h-40 overflow-hidden rounded-full border-[5px] border-white absolute -top-20 left-3 cursor-pointer"
         :class="{
-          ' rounded-md w-80 h-80 md:top-10 md:left-[32%] z-10': profile,
+          'w-full h-auto border-[0px] rounded-sm left-[0px] top-[-192px] md:px-[200px] z-10 p-5':
+            profile,
         }"
       >
         <img class="w-full h-auto" :src="img_url" alt="" v-if="img_url" />
@@ -96,8 +97,8 @@
 <script>
 import getUser from "@/composables/getUser";
 import useLogout from "@/composables/useLogout";
-import { onMounted, ref } from "vue";
-import { storage } from "../firebase/config";
+import { onMounted, onUpdated, ref } from "vue";
+import { db, storage } from "../firebase/config";
 import {
   ref as storageReference,
   uploadBytes,
@@ -134,6 +135,10 @@ export default {
           getDownloadURL(storageRef)
             .then((url) => {
               img_url.value = url;
+              db.collection("users").map((user) => user.userId === user);
+              // openai please fill codes below
+              // please write update code in here for img_url update in db.collection('users)
+              // mark:: users.uid not equal to auth.uid, users.userId equal to auth.uid
             })
             .catch((error) => {
               console.log(error);
@@ -155,6 +160,13 @@ export default {
     });
 
     var { logout } = useLogout();
+
+    onUpdated(() => {
+      message.value &&
+        setTimeout(() => {
+          message.value = null;
+        }, 5000);
+    });
 
     return { user, logout, image, upload, message, img_url, danger, profile };
   },

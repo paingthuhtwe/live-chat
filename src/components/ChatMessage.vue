@@ -1,7 +1,7 @@
 <template>
   <!-- message for sender start  -->
   <div class="mt-2 flex justify-end" v-if="message.userId === user.uid">
-    <div class="w-72 md:w-96 lg:w-[540px] mr-2">
+    <div class="w-[260px] md:w-96 lg:w-[540px] mr-1">
       <span class="float-right">
         <div>
           <span
@@ -34,7 +34,7 @@
           </span>
         </div>
         <div>
-          <span class="block text-sm font-medium text-slate-400 float-right">
+          <span class="block text-xs font-medium text-slate-400 float-right">
             {{ formatDate(message.created_at) }}
           </span>
         </div>
@@ -51,14 +51,14 @@
   <!-- message for receivers start  -->
   <div class="mt-4 flex" v-else>
     <div
-      class="w-9 h-9 rounded-lg bg-violet-400 mr-2 flex justify-center items-center font-bold text-lg text-slate-600 cursor-pointer"
+      class="w-9 h-9 rounded-lg bg-violet-400 mr-1 flex justify-center items-center font-bold text-lg text-slate-600 cursor-pointer"
     >
       {{ message.userName.charAt(0) }}
     </div>
-    <div class="w-72 md:w-96 lg:w-[540px]">
+    <div class="w-[260px] md:w-96 lg:w-[540px]">
       <p
         @dblclick="Fav(message)"
-        class="inline-block px-3 py-[5.5px] bg-indigo-500 text-white font-medium rounded-md relative"
+        class="inline-block px-3 py-[5.5px] bg-slate-200 text-slate-700 font-medium rounded-md relative"
       >
         {{ message.message }}
         <!-- start for fav icon  -->
@@ -86,7 +86,7 @@
         <!-- end for fav icon  -->
       </p>
 
-      <span class="block text-sm font-medium text-slate-400">
+      <span class="block text-xs font-medium text-slate-400">
         {{ formatDate(message.created_at) }}
       </span>
     </div>
