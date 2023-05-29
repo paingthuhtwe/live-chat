@@ -4,7 +4,7 @@
     <div class="w-[260px] md:w-96 lg:w-[540px] mr-1">
       <span class="float-right">
         <div>
-          <span
+          <span :onMouseover="overHandle" :onMouseleave="overHandle"
             @dblclick="Fav(message)"
             class="block px-3 py-[5.5px] bg-indigo-500 text-white font-medium rounded-md float-right relative"
             >{{ message.message }}
@@ -31,6 +31,7 @@
               </span>
             </span>
             <!-- end for fav icon  -->
+            <span v-if="dblInfo" class="absolute block rounded-md px-2 py-1 bg-slate-400 top-0 -left-[110px] text-slate-50 text-xs">Double Tap to ❤️</span>
           </span>
         </div>
         <div>
@@ -56,7 +57,7 @@
       {{ message.userName.charAt(0) }}
     </div>
     <div class="w-[260px] md:w-96 lg:w-[540px]">
-      <p
+      <span :onMouseover="overHandle" :onMouseleave="overHandle"
         @dblclick="Fav(message)"
         class="inline-block px-3 py-[5.5px] bg-slate-200 text-slate-700 font-medium rounded-md relative"
       >
@@ -84,7 +85,8 @@
           </span>
         </span>
         <!-- end for fav icon  -->
-      </p>
+        <span v-if="dblInfo" class="absolute block rounded-md px-2 py-1 bg-slate-400 top-0 -right-[110px] text-slate-50 text-xs">Double Tap to ❤️</span>
+      </span>
 
       <span class="block text-xs font-medium text-slate-400">
         {{ formatDate(message.created_at) }}
@@ -109,6 +111,8 @@ export default {
 
     let img_url = ref(null);
 
+    let dblInfo = ref(false);
+
     onMounted(async () => {
       if (props.user.photoURL) {
         let url = props.user.photoURL.includes("http");
@@ -129,7 +133,11 @@ export default {
       }
     });
 
-    return { formatDate, Fav, img_url };
+    let overHandle = () => {
+      dblInfo.value = !dblInfo.value;
+    }
+
+    return { formatDate, Fav, img_url, dblInfo, overHandle };
   },
 };
 </script>

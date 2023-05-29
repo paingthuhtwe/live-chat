@@ -20,7 +20,7 @@
         @click="profile = !profile"
         class="w-40 h-40 overflow-hidden rounded-full border-[5px] border-white absolute -top-20 left-3 cursor-pointer"
         :class="{
-          'w-full h-auto border-[0px] rounded-sm left-[0px] top-[-192px] md:px-[200px] z-10 p-5':
+          'w-full h-auto border-none rounded-sm left-[0px] top-[-192px] md:px-[200px] z-10 p-5':
             profile,
         }"
       >
