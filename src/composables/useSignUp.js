@@ -2,19 +2,19 @@ import { ref } from "vue";
 import { auth } from "../firebase/config";
 import useCollection from "./useCollection";
 
-let useSignUp = () => {
-  let error = ref("");
+const useSignUp = () => {
+  const error = ref("");
 
-  let { addDoc } = useCollection("users");
+  const { addDoc } = useCollection("users");
 
-  let createAccount = async (name, email, password) => {
+  const createAccount = async (name, email, password) => {
     try {
-      let res = await auth.createUserWithEmailAndPassword(email, password);
+      const res = await auth.createUserWithEmailAndPassword(email, password);
       if (!res) {
         throw new Error("Could not create new account!");
       }
       await res.user.updateProfile({ displayName: name });
-      let userInfo = {
+      const userInfo = {
         name: name,
         email: email,
         photoURL: null,

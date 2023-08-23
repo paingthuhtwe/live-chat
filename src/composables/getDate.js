@@ -1,4 +1,4 @@
-let getDate = () => {
+const getDate = () => {
   const formatDate = (timestamp) => {
     if (timestamp) {
       const now = new Date();

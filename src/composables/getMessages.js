@@ -1,9 +1,9 @@
 import { ref } from "vue";
 import { db } from "../firebase/config";
 
-let getMessages = () => {
-  let error = ref("");
-  let messages = ref();
+const getMessages = () => {
+  const error = ref("");
+  const messages = ref();
 
   try {
     db.collection("messages")

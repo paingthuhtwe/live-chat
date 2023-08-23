@@ -1,13 +1,13 @@
 import { ref } from "vue";
 import { db } from "../firebase/config";
 
-let useCollection = (name) => {
-  let error = ref("");
+const useCollection = (name) => {
+  const error = ref("");
 
   // add new document to firebase
-  let addDoc = async (doc) => {
+  const addDoc = async (doc) => {
     try {
-      let res = await db.collection(name).add(doc);
+      const res = await db.collection(name).add(doc);
       if (!res) {
         throw new Error("Sorry, Can't reach your process!");
       }

@@ -15,12 +15,12 @@ const firebaseConfig = {
   measurementId: "G-4G146EHZRH",
 };
 
-let app = firebase.initializeApp(firebaseConfig);
+const app = firebase.initializeApp(firebaseConfig);
 
-let db = firebase.firestore();
-let timestamp = firebase.firestore.FieldValue.serverTimestamp;
-let auth = firebase.auth();
-let storage = getStorage(app);
-let provider = new GoogleAuthProvider();
+const db = firebase.firestore();
+const timestamp = firebase.firestore.FieldValue.serverTimestamp;
+const auth = firebase.auth();
+const storage = getStorage(app);
+const provider = new GoogleAuthProvider();
 
 export { db, timestamp, auth, storage, provider, getAuth, signInWithPopup };
