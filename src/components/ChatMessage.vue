@@ -45,7 +45,7 @@
       to="/profile"
       class="w-9 h-9 rounded-lg bg-red-300 overflow-hidden flex justify-center items-center font-bold text-lg text-slate-600 cursor-pointer"
     >
-      <img :src="img_url" v-if="img_url" alt="" />
+      <img :src="img_url" v-if="img_url" :alt="img_url" />
       <span v-else> {{ message.userName.charAt(0) }}</span>
     </router-link>
   </div>
